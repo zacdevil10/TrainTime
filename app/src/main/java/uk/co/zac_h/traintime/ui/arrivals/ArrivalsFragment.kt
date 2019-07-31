@@ -1,5 +1,6 @@
 package uk.co.zac_h.traintime.ui.arrivals
 
+import android.content.Context
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.util.Log
@@ -11,15 +12,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import uk.co.zac_h.traintime.FragmentCallback
+import uk.co.zac_h.traintime.MainActivity
 
 import uk.co.zac_h.traintime.R
 import uk.co.zac_h.traintime.data.model.StationModel
 
-class ArrivalsFragment : Fragment() {
+class ArrivalsFragment : Fragment(), ArrivalsView {
 
     companion object {
         fun newInstance() = ArrivalsFragment()
     }
+
+    private var fragmentCallback: FragmentCallback? = null
 
     private lateinit var viewModel: ArrivalsViewModel
 
@@ -32,8 +37,10 @@ class ArrivalsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProviders.of(this).get(ArrivalsViewModel::class.java)
+        viewModel.setup()
 
-        arrivalsAdapter = ArrivalsAdapter(nearbyStations)
+        arrivalsAdapter = ArrivalsAdapter(context, nearbyStations, viewModel, this)
 
         view.findViewById<RecyclerView>(R.id.arrivals_nearby_stations_recycler).apply {
             layoutManager = LinearLayoutManager(context)
@@ -41,16 +48,11 @@ class ArrivalsFragment : Fragment() {
             isNestedScrollingEnabled = false
             adapter = arrivalsAdapter
         }
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(ArrivalsViewModel::class.java)
 
         viewModel.getNearbyStops()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
+            ?.subscribeOn(Schedulers.io())
+            ?.observeOn(AndroidSchedulers.mainThread())
+            ?.subscribe({
                 for (i in 0 until it.stopPoints.size) nearbyStations.add(it.stopPoints[i])
                 arrivalsAdapter?.notifyDataSetChanged()
             }){
@@ -58,4 +60,17 @@ class ArrivalsFragment : Fragment() {
             }
     }
 
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+
+        try {
+            fragmentCallback = context as MainActivity
+        } catch (e: ClassCastException) {
+            throw ClassCastException(activity.toString() + "must implement FragmentCallback")
+        }
+    }
+
+    override fun showTrainLineFragment(lineName: String, stationName: String) {
+        fragmentCallback?.swapFragment(lineName, stationName)
+    }
 }
