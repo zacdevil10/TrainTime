@@ -7,10 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-import uk.co.zac_h.traintime.data.model.ArrivalsModel
-import uk.co.zac_h.traintime.data.model.NearbyStopsModel
-import uk.co.zac_h.traintime.data.model.StationModel
-import uk.co.zac_h.traintime.data.model.StopPointModel
+import uk.co.zac_h.traintime.data.model.*
 
 interface TransportInterface {
 
@@ -18,7 +15,7 @@ interface TransportInterface {
     fun getStationArrivals(@Path("stationId") stationId: String): Observable<ArrayList<ArrivalsModel>>
 
     @GET("/Line/{lineName}/Route/Sequence/all")
-    fun getLineStopPoints(@Path("lineName") lineName: String): Observable<StopPointModel>
+    fun getLineStopPoints(@Path("lineName") lineName: String): Observable<StopSequenceModel>
 
     @GET("/StopPoint?stopTypes=NaptanMetroStation&radius=1000&returnLines=true&")
     fun getNearbyStops(@Query("lat") lat: Double, @Query("lon") lon: Double): Observable<NearbyStopsModel>

@@ -1,7 +1,5 @@
 package uk.co.zac_h.traintime.data.model
 
-import uk.co.zac_h.traintime.utils.LatLng
-
-data class StopPointModel(val name: String, val latLng: LatLng, var closest: Boolean) {
+data class StopPointModel(val name: String, val lat: Double, val lon: Double, var closest: Boolean) {
     var distanceRatio: Double = 0.0
 }
