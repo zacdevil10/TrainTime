@@ -5,6 +5,10 @@ import android.location.Geocoder
 import uk.co.zac_h.traintime.ui.lines.GPSTracking
 import java.io.IOException
 import java.util.*
+import kotlin.math.acos
+import kotlin.math.cos
+import kotlin.math.pow
+import kotlin.math.sin
 
 /**
  * Common methods used for getting location information and calculating distances
@@ -66,7 +70,7 @@ object LocationUtils {
         val (lat1, lng1) = LatLng(station2?.lat!! - station.lat, station2.lng - station.lng)
 
         //Find the square of station 2 to station
-        val squareS2S = (Math.pow(lat1, 2.0) + Math.pow(lng1, 2.0)).toFloat()
+        val squareS2S = (lat1.pow(2.0) + lng1.pow(2.0)).toFloat()
 
         val SC_S2S = (lat * lat1 + lng * lng1).toFloat()
 
@@ -87,8 +91,8 @@ object LocationUtils {
      */
     fun distance(latLng: LatLng, latLng2: LatLng?): Double {
         val theta = latLng.lng - latLng2!!.lng
-        var dist = Math.sin(Math.toRadians(latLng.lat)) * Math.sin(Math.toRadians(latLng2.lat)) + Math.cos(Math.toRadians(latLng.lat)) * Math.cos(Math.toRadians(latLng2.lat)) * Math.cos(Math.toRadians(theta))
-        dist = Math.toDegrees(Math.acos(dist)) * 60.0 * 1.1515
+        var dist = sin(Math.toRadians(latLng.lat)) * sin(Math.toRadians(latLng2.lat)) + cos(Math.toRadians(latLng.lat)) * cos(Math.toRadians(latLng2.lat)) * cos(Math.toRadians(theta))
+        dist = Math.toDegrees(acos(dist)) * 60.0 * 1.1515
 
         return dist
     }

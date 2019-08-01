@@ -1,25 +1,23 @@
 package uk.co.zac_h.traintime.ui.lines
 
 import android.graphics.Color
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat
-
-import uk.co.zac_h.traintime.R
-import uk.co.zac_h.traintime.utils.LineColorHelper
 import android.view.WindowManager
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.train_line_fragment.*
+import uk.co.zac_h.traintime.R
 import uk.co.zac_h.traintime.data.model.StopPointModel
 import uk.co.zac_h.traintime.utils.LatLng
+import uk.co.zac_h.traintime.utils.LineColorHelper
 import uk.co.zac_h.traintime.utils.LocationUtils
 import java.util.*
 import kotlin.collections.ArrayList
@@ -70,12 +68,9 @@ class TrainLineFragment : Fragment() {
             adapter = stopPointsAdapter
         }
 
-        println(arguments?.getString("lineName"))
-
-        viewModel.getLineStopPoints(arguments?.getString("lineName")?.replace(" & ", "-") ?: "default")
-            ?.subscribeOn(Schedulers.io())
-            ?.observeOn(AndroidSchedulers.mainThread())
-            ?.subscribe({
+        viewModel.getLineStopPoints(arguments?.getString("lineName")?.replace(" & ", "-") ?: "default").subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
                 var stationDistance: Double? = null
                 var closestStation: String? = null
 
