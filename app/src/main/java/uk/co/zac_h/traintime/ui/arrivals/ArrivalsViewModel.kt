@@ -14,8 +14,8 @@ class ArrivalsViewModel : ViewModel() {
         transportInterface = TransportInterface.create()
     }
 
-    fun getNearbyStops(): Observable<NearbyStopsModel>? {
-        return transportInterface?.getNearbyStops(lat = 51.521225, lon = -0.162954)
+    fun getNearbyStops(lat: Double, lng: Double): Observable<NearbyStopsModel>? {
+        return transportInterface?.getNearbyStops(lat = lat, lon = lng)
     }
 
     fun getArrivals(id: String): Observable<ArrayList<ArrivalsModel>>? {

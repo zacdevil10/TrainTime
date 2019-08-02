@@ -29,7 +29,7 @@ class StopPointsAdapter(private val context: Context?, private val stationName: 
         if (stopPointModel.closest && context != null) {
             //-5 is the offset for the location marker to centralise it over the horizontal station line
             val offsetHeight =
-                (-5 + 28 * stopPointModel.distanceRatio) * context.resources.displayMetrics.density
+                (-8 + 28 * stopPointModel.distanceRatio) * context.resources.displayMetrics.density
             //Get the height of the recycler item in pixels
             val viewHeight = 56 * context.resources.displayMetrics.density
 

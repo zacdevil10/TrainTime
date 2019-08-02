@@ -17,7 +17,7 @@ interface TransportInterface {
     @GET("/Line/{lineName}/Route/Sequence/all")
     fun getLineStopPoints(@Path("lineName") lineName: String): Observable<StopSequenceModel>
 
-    @GET("/StopPoint?stopTypes=NaptanMetroStation&radius=1000&returnLines=true&")
+    @GET("/StopPoint?stopTypes=NaptanMetroStation&radius=2000&returnLines=true&")
     fun getNearbyStops(@Query("lat") lat: Double, @Query("lon") lon: Double): Observable<NearbyStopsModel>
 
     companion object RetrofitSetup {

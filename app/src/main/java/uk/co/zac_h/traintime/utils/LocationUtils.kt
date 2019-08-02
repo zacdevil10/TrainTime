@@ -23,7 +23,7 @@ object LocationUtils {
     fun getLocation(context: Context?): LatLng {
         val gpsTracking = GPSTracking(context)
 
-        val location = LatLng(gpsTracking.latitude, gpsTracking.longitude)
+        val location = LatLng(gpsTracking.latitude ?: 51.511050, gpsTracking.longitude ?: -0.104374)
 
         gpsTracking.unregister()
 

@@ -68,6 +68,8 @@ class TrainLineFragment : Fragment() {
             adapter = stopPointsAdapter
         }
 
+        val currentLocation = LocationUtils.getLocation(context)
+
         viewModel.getLineStopPoints(arguments?.getString("lineName")?.replace(" & ", "-") ?: "default").subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
@@ -83,7 +85,7 @@ class TrainLineFragment : Fragment() {
                     val stationLocation = LatLng(stopPoint.lat, stopPoint.lon)
 
                     //Find closest station
-                    val distance = LocationUtils.distance(LatLng(51.521225, -0.162954), stationLocation)
+                    val distance = LocationUtils.distance(LatLng(currentLocation.lat, currentLocation.lng), stationLocation)
 
                     if (stationDistance == null) {
                         stationDistance = distance
@@ -116,7 +118,7 @@ class TrainLineFragment : Fragment() {
                         LatLng(it1,
                             it2
                         )
-                    } }, LatLng(51.521225, -0.162954))
+                    } }, LatLng(currentLocation.lat, currentLocation.lng))
 
                 val stopPointModel = stopsSequence[closestStation]
                 stopPointModel?.closest = true

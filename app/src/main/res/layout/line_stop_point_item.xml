@@ -33,11 +33,12 @@
     </LinearLayout>
 
     <!--Use custom location marker image here-->
-    <View
+    <ImageView
         android:id="@+id/line_location_marker_view"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
-        android:background="#001eff"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:src="@drawable/ic_location"
+        android:tint="#1e88e5"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

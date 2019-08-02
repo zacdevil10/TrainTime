@@ -17,6 +17,7 @@ import uk.co.zac_h.traintime.MainActivity
 
 import uk.co.zac_h.traintime.R
 import uk.co.zac_h.traintime.data.model.StationModel
+import uk.co.zac_h.traintime.utils.LocationUtils
 
 class ArrivalsFragment : Fragment(), ArrivalsView {
 
@@ -49,7 +50,9 @@ class ArrivalsFragment : Fragment(), ArrivalsView {
             adapter = arrivalsAdapter
         }
 
-        viewModel.getNearbyStops()
+        val currentLocation = LocationUtils.getLocation(context)
+
+        viewModel.getNearbyStops(currentLocation.lat, currentLocation.lng)
             ?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribe({
