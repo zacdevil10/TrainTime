@@ -1,43 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".ui.arrivals.ArrivalsFragment">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/arrivals_appbar"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/arrivals_nearby_stations_recycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/arrivals_toolbar"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:title="@string/app_name"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_weight="1"
-            android:background="?attr/colorPrimary">
-
-        </androidx.appcompat.widget.Toolbar>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/arrivals_nearby_stations_recycler"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="none" />
-
-    </androidx.core.widget.NestedScrollView>
-
-</LinearLayout>
+</FrameLayout>

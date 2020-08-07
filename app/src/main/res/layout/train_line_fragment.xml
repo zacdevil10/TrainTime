@@ -1,43 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@android:color/white"
     tools:context=".ui.lines.TrainLineFragment">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/line_appbar"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/line_stop_points_recycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/line_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_weight="1"
-            android:background="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/AppTheme.PopupOverlay">
-
-        </androidx.appcompat.widget.Toolbar>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/line_stop_points_recycler"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="none"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-    </androidx.core.widget.NestedScrollView>
-
-</LinearLayout>
+</FrameLayout>

@@ -1,4 +1,4 @@
-package uk.co.zac_h.traintime.ui.lines
+package uk.co.zac_h.traintime.ui.lines.adapter
 
 import android.content.Context
 import android.graphics.Typeface
@@ -14,7 +14,11 @@ import uk.co.zac_h.traintime.data.model.StopPointModel
 class StopPointsAdapter(private val context: Context?, private val stationName: String, private val lineStopPointsArray: ArrayList<StopPointModel>): RecyclerView.Adapter<StopPointsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.line_stop_point_item, parent, false))
+        return ViewHolder(
+            LayoutInflater.from(
+                parent.context
+            ).inflate(R.layout.line_stop_point_item, parent, false)
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

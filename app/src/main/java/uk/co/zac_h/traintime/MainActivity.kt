@@ -4,16 +4,15 @@ import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import uk.co.zac_h.traintime.ui.arrivals.ArrivalsFragment
-import uk.co.zac_h.traintime.ui.lines.TrainLineFragment
+import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), FragmentCallback {
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        if (savedInstanceState == null) supportFragmentManager.beginTransaction().replace(R.id.frame_fragments_container_main, ArrivalsFragment.newInstance()).commit()
+        setSupportActionBar(toolbar)
 
         supportFragmentManager.addOnBackStackChangedListener {
             if (supportFragmentManager.backStackEntryCount == 0) {
@@ -23,9 +22,5 @@ class MainActivity : AppCompatActivity(), FragmentCallback {
                 }
             }
         }
-    }
-
-    override fun swapFragment(lineName: String, stationName: String) {
-        supportFragmentManager.beginTransaction().add(R.id.frame_fragments_container_main, TrainLineFragment.newInstance(lineName, stationName)).addToBackStack("").commit()
     }
 }

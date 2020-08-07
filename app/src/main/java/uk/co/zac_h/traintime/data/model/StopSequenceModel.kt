@@ -1,7 +1,7 @@
 package uk.co.zac_h.traintime.data.model
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
-data class StopSequenceModel(@SerializedName("stopPointSequences") val sequence: ArrayList<StopPointsModel>)
+data class StopSequenceModel(@field:Json(name = "stopPointSequences") val sequence: List<StopPointsModel>)
 
-data class StopPointsModel(@SerializedName("stopPoint") val points: ArrayList<StopPointModel>)
+data class StopPointsModel(@field:Json(name = "stopPoint") val points: List<StopPointModel>)

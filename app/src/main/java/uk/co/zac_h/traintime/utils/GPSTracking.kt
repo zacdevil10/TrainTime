@@ -1,4 +1,4 @@
-package uk.co.zac_h.traintime.ui.lines
+package uk.co.zac_h.traintime.utils
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -43,7 +43,8 @@ class GPSTracking(
 
     @SuppressLint("MissingPermission")
     private fun setLocationManager(provider: String) {
-        locationManager.requestLocationUpdates(provider, TIME_TO_UPDATE, DISTANCE_TO_CHANGE.toFloat(), this)
+        locationManager.requestLocationUpdates(provider,
+            TIME_TO_UPDATE, DISTANCE_TO_CHANGE.toFloat(), this)
         location = locationManager.getLastKnownLocation(provider)
         if (location != null) {
             latitude = location?.latitude

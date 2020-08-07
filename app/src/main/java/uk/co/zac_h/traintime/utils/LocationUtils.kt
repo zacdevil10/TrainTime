@@ -2,7 +2,6 @@ package uk.co.zac_h.traintime.utils
 
 import android.content.Context
 import android.location.Geocoder
-import uk.co.zac_h.traintime.ui.lines.GPSTracking
 import java.io.IOException
 import java.util.*
 import kotlin.math.acos

@@ -1,3 +1,5 @@
 package uk.co.zac_h.traintime.data.model
 
-data class NearbyStopsModel(val stopPoints: ArrayList<StationModel>)
+import com.squareup.moshi.Json
+
+data class NearbyStopsModel(@field:Json(name = "stopPoints") val stopPoints: List<StationModel>)
